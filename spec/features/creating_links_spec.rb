@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'database_cleaner'
 
 feature 'Creating links' do
   scenario 'A new link is submitted to the database' do

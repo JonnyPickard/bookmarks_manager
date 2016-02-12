@@ -9,5 +9,5 @@ gem    "data_mapper"
 gem    "dm-postgres-adapter"
 gem    "rspec-sinatra"
 gem    "shotgun"
-
+gem    "database_cleaner"
 
