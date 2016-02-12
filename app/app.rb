@@ -6,13 +6,17 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
 
   get '/links' do
-    @links = Links.all
+    @links = Link.all
     erb(:'./links/index')
   end
 
-  post '/links/new' do
-    erb(:'./links/add_link')
-    redirect('/links')
+  get '/links/new' do
+    erb(:'links/new')
+  end
+
+  post '/links' do
+    Link.create(url: params[:url], title: params[:title])
+    redirect to('/links')
   end
 
   run! if app_file == $0

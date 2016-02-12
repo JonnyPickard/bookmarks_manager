@@ -5,8 +5,9 @@ feature 'Creating links' do
     visit '/links/new'
     fill_in('title', :with => 'Test')
     fill_in('url', :with => 'http://testlink.com')
-    click_button('submit')
-    visit '/links'
+    click_button('Create Link')
+    expect(current_path).to eq '/links'
+
     within 'ul#links' do
       expect(page).to have_content('Test')
     end
