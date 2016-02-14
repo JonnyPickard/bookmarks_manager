@@ -16,4 +16,8 @@ feature 'User sign up' do
   scenario "I can't sign up without and email adress" do
     expect { sign_up(email: nil) }.not_to change(User, :count)
   end
+
+  scenario "I can't sign up with an invalid email adress" do
+    expect { sign_up(email: "invalid@email") }.to change(User, :count).by(0)
+  end
 end
