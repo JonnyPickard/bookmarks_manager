@@ -8,16 +8,9 @@ class BookmarkManager < Sinatra::Base
   set :session_secret, 'super_secret'
 
   helpers do
-    def current_user
-      @current_user ||= User.get(session[:user_id])
-    end
-  end
-
-  post '/users' do
-    user = User.create(email: params[:email],
-                       password: params[:password])
-    session[:user_id] = user.id
-    redirect to('/links')
+   def current_user
+     @current_user ||= User.get(session[:user_id])
+   end
   end
 
   get '/links' do
@@ -45,7 +38,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/new' do
-    erb:'users/new'
+    erb(:'users/new')
+  end
+
+  post '/users' do
+    user = User.create(email: params[:email],
+                       password: params[:password])
+    session[:user_id] = user.id
+    redirect to('/links')
   end
 
   run! if app_file == $0
