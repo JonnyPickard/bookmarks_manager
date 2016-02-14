@@ -8,10 +8,14 @@ require 'capybara/rspec'
 require 'rspec'
 
 require './app/app.rb'
+require_relative 'helpers/session'
+
 
 Capybara.app = BookmarkManager
 
 RSpec.configure do |config|
+
+  config.include SessionHelpers
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
